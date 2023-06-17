@@ -1,0 +1,15 @@
+.logreg__link-to-log {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.214;
+  color: white;
+  text-decoration: none;
+}
+
+.logreg__link-to-log:hover {
+  transition: opacity .3s linear;
+  opacity: .6;
+}

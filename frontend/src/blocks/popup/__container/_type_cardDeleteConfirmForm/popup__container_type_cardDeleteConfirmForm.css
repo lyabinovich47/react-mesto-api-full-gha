@@ -1,0 +1,11 @@
+.popup__container_type_cardDeleteConfirmForm {
+  top: 270px;
+  min-height: 181px;
+}
+
+@media (max-width: 1023px) {
+  .popup__container_type_cardDeleteConfirmForm {
+    top: 123px;
+    min-height: 157px;
+  }
+}

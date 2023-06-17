@@ -1,0 +1,19 @@
+.popup__text {
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  width: 100%;
+  min-height: 27px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  font-size: 14px;
+  line-height: 1.214;
+  padding-bottom: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+
+

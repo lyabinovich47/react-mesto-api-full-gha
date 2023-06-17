@@ -1,0 +1,16 @@
+.popup__big-photo-container {
+  box-sizing: border-box;
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 3;
+  margin: 0;
+  max-width: 75vw;
+}
+
+@media (max-width: 767px) {
+  .popup__big-photo-container {
+    top: 136px;
+  }
+}

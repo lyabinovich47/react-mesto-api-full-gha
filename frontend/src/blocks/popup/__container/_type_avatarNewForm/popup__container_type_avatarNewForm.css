@@ -1,0 +1,13 @@
+.popup__container_type_avatarNewForm {
+  top: 224px;
+  min-height: 272px;
+}
+
+
+@media (max-width: 1023px) {
+  .popup__container_type_avatarNewForm {
+    min-height: 247px;
+    top: 171px;
+
+  }
+}

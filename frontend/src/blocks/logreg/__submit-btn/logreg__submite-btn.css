@@ -1,0 +1,15 @@
+.logreg__submite-btn {
+  margin-top: 216px;
+  width: 358px;
+  height: 50px;
+  font-size: 18px;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;  
+}
+
+.logreg__submite-btn:hover {
+  transition: opacity .3s linear;
+  opacity: .6;
+}

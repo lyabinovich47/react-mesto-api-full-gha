@@ -1,0 +1,50 @@
+.profile__avatar-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile__avatar-wrap:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .8);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.profile__avatar-wrap:before {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  right: 0;
+  bottom: 0;
+  background: url(../../../images/icons/pensil.svg);
+  background-repeat: no-repeat;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.profile__avatar-wrap:hover:before {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile__avatar-wrap:hover:after {
+  visibility: visible;
+  opacity: 1;
+}
