@@ -3,6 +3,7 @@ const express = require('express');
 // const bodyParser = require('body-parser');  убираем, заменяем на express.json()
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -11,6 +12,7 @@ const { PORT, MONGO_URL } = require('./config');
 mongoose.connect(MONGO_URL, {});
 
 const app = express();
+app.use(cors()); // здесь нужно не забыть добавить домены фронта и бэка для настройки cors политики
 
 // app.use(express.static(path.join(__dirname, 'public'))); убираем по ревью, т.к. нет папки static
 app.use(express.json());
