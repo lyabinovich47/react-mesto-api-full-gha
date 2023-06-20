@@ -134,8 +134,8 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://localhost:3000',
-  // baseUrl: 'https://api.lyabinovich47.nomoredomains.rocks',
+  // baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.lyabinovich47.nomoredomains.rocks',
   // headers: {
   //   authorization: 'a68b3d82-1603-42e3-8955-1f9a3567159b',
   //   'Content-Type': 'application/json'

@@ -6,18 +6,29 @@ const { errors } = require('celebrate');
 const cors = require('cors');
 const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT, MONGO_URL } = require('./config');
 
 mongoose.connect(MONGO_URL, {});
 
 const app = express();
-app.use(cors()); // здесь нужно не забыть добавить домены фронта и бэка для настройки cors политики
+app.use(cors({ origin: ['http://localhost:3001', 'https://https://lyabinovich47.nomoredomains.rocks'] }));
 
-// app.use(express.static(path.join(__dirname, 'public'))); убираем по ревью, т.к. нет папки static
+// app.use(express.static(path.join(__dirname, 'public'))); убираем по ревью, т.к. нет папки
+app.use(requestLogger); // логгер запросов
 app.use(express.json());
 
+// GET /crash-test — тест сервера на востановление
+// не забыть удалить этот код после прохождения ревью
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use('/', router);
+app.use(errorLogger); // логгер ошибок
 app.use(errors());
 app.use(errorHandler);
 
