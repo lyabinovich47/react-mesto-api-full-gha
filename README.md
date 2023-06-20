@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.107.17
+IP <158.160.107.17>
 
 Frontend https://lyabinovich47.nomoredomains.rocks
 
