@@ -13,7 +13,8 @@ const { PORT, MONGO_URL } = require('./config');
 mongoose.connect(MONGO_URL, {});
 
 const app = express();
-app.use(cors({ origin: ['http://localhost:3001', 'https://lyabinovich47.nomoredomains.rocks'] }));
+// app.use(cors({ origin: ['http://localhost:3001', 'https://lyabinovich47.nomoredomains.rocks'] }));
+app.use(cors());
 
 // app.use(express.static(path.join(__dirname, 'public'))); убираем по ревью, т.к. нет папки
 app.use(requestLogger); // логгер запросов
