@@ -1,4 +1,5 @@
 export const BASE_URL = "http://localhost:3000";
+// export const BASE_URL = "https://api.lyabinovich47.nomoredomains.rocks";
 
 const resjson = (res) => {
   if (res.ok) {

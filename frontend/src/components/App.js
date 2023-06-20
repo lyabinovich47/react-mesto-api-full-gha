@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { api } from "../utils/api.js";
 import Header from "./Header";
@@ -39,27 +39,40 @@ function App() {
 
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    api
-      .getProfile()
-      .then((res) => {
-        setCurrentUser(res);
-      })
-      .catch(() => {
-        console.log("Ошибка запроса данных профиля пользователя");
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   api
+  //     .getProfile()
+  //     .then((res) => {
+  //       setCurrentUser(res);
+  //     })
+  //     .catch(() => {
+  //       console.log("Ошибка запроса данных профиля пользователя");
+  //     });
+  // }, []);
 
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch(() => {
-        console.log("Ошибка запроса начальных карточек");
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   api
+  //     .getInitialCards()
+  //     .then((res) => {
+  //       setCards(res);
+  //     })
+  //     .catch(() => {
+  //       console.log("Ошибка запроса начальных карточек");
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      Promise.all([api.getProfile(), api.getInitialCards()])
+        .then(([userData, cardList]) => {
+          setCurrentUser(userData);
+          setCards(cardList.reverse());
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
+    }
+  }, [isLoggedIn]);
 
   const handleRegister = (event, formValue, setFormValue) => {
     event.preventDefault();
@@ -72,7 +85,7 @@ function App() {
           email: "",
           password: "",
         });
-        navigate("/sign-in", { replace: true });
+        navigate("/signin", { replace: true });
       })
       .catch(() => {
         setIsRegisteredIn(false);
