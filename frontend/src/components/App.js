@@ -100,10 +100,10 @@ function App() {
 
   React.useEffect(() => {
     if (localStorage.getItem("jwt")) {
-      const jwt = localStorage.getItem("jwt");
-      checkToken(jwt)
+      // const jwt = localStorage.getItem("jwt");
+      checkToken() // убрал jwt из параметра
         .then((data) => {
-          setUserEmail(data.data.email);
+          setUserEmail(data.email);  // убираем одну data для корректности данных
           setIsLoggedIn(true);
           navigate("/", { replace: true });
         })

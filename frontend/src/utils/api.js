@@ -1,8 +1,8 @@
 class Api {
 
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl }) {
 
-    this._headers = headers;
+    // this._headers = headers;
     this._baseUrl = baseUrl;
     this._ResJson = (res) => {
       if (res.ok) {
@@ -15,8 +15,11 @@ class Api {
 
   getProfile() {
 
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
     })
       .then(this._ResJson);
 
@@ -24,8 +27,11 @@ class Api {
 
   getInitialCards() {
 
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
     })
       .then(this._ResJson);
 
@@ -33,9 +39,13 @@ class Api {
 
   editProfile(name, about) {
 
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         name: name,
         about: about
@@ -47,9 +57,13 @@ class Api {
 
   addCard(name, link) {
 
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         name: name,
         link: link
@@ -61,9 +75,12 @@ class Api {
 
   deleteCard(id) {
 
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
     })
       .then(this._ResJson);
 
@@ -71,9 +88,13 @@ class Api {
 
   deleteLike(id) {
 
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
     })
       .then(this._ResJson);
 
@@ -81,9 +102,13 @@ class Api {
 
   addLike(id) {
 
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
-      headers: this._headers
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
     })
       .then(this._ResJson);
 
@@ -91,9 +116,13 @@ class Api {
 
   updateAvatar(newAvatar) {
 
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         avatar: newAvatar
       })
@@ -105,9 +134,9 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-57',
-  headers: {
-    authorization: 'a68b3d82-1603-42e3-8955-1f9a3567159b',
-    'Content-Type': 'application/json'
-  }
+  baseUrl: 'http://localhost:3000',
+  // headers: {
+  //   authorization: 'a68b3d82-1603-42e3-8955-1f9a3567159b',
+  //   'Content-Type': 'application/json'
+  // }
 });
