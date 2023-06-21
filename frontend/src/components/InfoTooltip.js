@@ -17,13 +17,13 @@ function InfoTooltip({ name, isOpen, isSuccess, onClose }) {
           type="button"
         ></button>
         <img
-          src={isSuccess ? pathSuccess : pathFail}
+          src={isSuccess ? pathSuccess : pathFail}          
           className="popup__image"
           alt=""
         />
         <h3 className={`popup__title popup__title_type_${name}`}>
-          {isSuccess ? titleSuccess : titleFail}
-        </h3>
+          {isSuccess ? titleSuccess : titleFail}       
+        </h3>        
       </form>
     </div>
   );

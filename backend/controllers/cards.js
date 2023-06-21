@@ -14,27 +14,10 @@ const createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
+    .then((card) => card.populate('owner')) // обогащаем карточку данными ownera
     .then((card) => res.status(CREATED).send(card))
     .catch(next);
 };
-
-// const deleteCard = (req, res) => {
-//   Card.findByIdAndDelete(req.params.cardId)
-//     .then((card) => {
-//       if (card) {
-//         res.status(RES_OK).send({ message: 'Пост удален' });
-//       } else {
-//         res.status(ERROR_NOTFOUND).send({ message: 'Карточка с указанным id не найдена' });
-//       }
-//     })
-//     .catch((err) => {
-//       if (err.name === 'CastError') {
-//         res.status(ERROR_CODE).send({ message: 'Невалидный идентификатор карточки' });
-//       } else {
-//         res.status(ERROR_SERVER).send({ message: 'Произошла ошибка' });
-//       }
-//     });
-// };
 
 const deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)

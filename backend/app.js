@@ -1,6 +1,5 @@
 const express = require('express');
-// const path = require('path'); т.к. убрали строку из-за static нижежеже
-// const bodyParser = require('body-parser');  убираем, заменяем на express.json()
+
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('cors');
@@ -13,10 +12,9 @@ const { PORT, MONGO_URL } = require('./config');
 mongoose.connect(MONGO_URL, {});
 
 const app = express();
-app.use(cors({ origin: ['http://localhost:3001', 'https://lyabinovich47.nomoredomains.rocks'] }));
-// app.use(cors());
+// app.use(cors({ origin: ['http://localhost:3001', 'https://lyabinovich47.nomoredomains.rocks'] }));
+app.use(cors());
 
-// app.use(express.static(path.join(__dirname, 'public'))); убираем по ревью, т.к. нет папки
 app.use(requestLogger); // логгер запросов
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -39,28 +39,6 @@ function App() {
 
   const navigate = useNavigate();
 
-  // React.useEffect(() => {
-  //   api
-  //     .getProfile()
-  //     .then((res) => {
-  //       setCurrentUser(res);
-  //     })
-  //     .catch(() => {
-  //       console.log("Ошибка запроса данных профиля пользователя");
-  //     });
-  // }, []);
-
-  // React.useEffect(() => {
-  //   api
-  //     .getInitialCards()
-  //     .then((res) => {
-  //       setCards(res);
-  //     })
-  //     .catch(() => {
-  //       console.log("Ошибка запроса начальных карточек");
-  //     });
-  // }, []);
-
   useEffect(() => {
     if (isLoggedIn) {
       Promise.all([api.getProfile(), api.getInitialCards()])
@@ -74,46 +52,41 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  const handleRegister = (event, formValue, setFormValue) => {
+  const handleRegister = (event, formValue) => {
     event.preventDefault();
     const { email, password } = formValue;
+    
     register(email, password)
-      .then((data) => {
-        setIsRegisteredIn(true);
-        setIsInfoTooltipOpen(true);
-        setFormValue({
-          email: "",
-          password: "",
-        });
-        navigate("/signin", { replace: true });
+      .then((data) => {        
+        setIsRegisteredIn(true);        
+        setIsInfoTooltipOpen(true);   
+        navigate("/sign-in", { replace: true });        
       })
       .catch(() => {
         setIsRegisteredIn(false);
         setIsInfoTooltipOpen(true);
-      });
+      });      
   };
 
-  const handleLogin = (event, formValue, setFormValue) => {
+  const handleLogin = (event, formValue) => {
     event.preventDefault();
     const { email, password } = formValue;
     login(email, password)
       .then((data) => {
         localStorage.setItem("jwt", data.token);
-        setIsLoggedIn(true);
-        setFormValue({
-          email: "",
-          password: "",
-        });
+        setIsLoggedIn(true);        
         navigate("/", { replace: true });
       })
       .catch((err) => {
+        setIsRegisteredIn(false);
+        setIsInfoTooltipOpen(true);       
         console.log(`Ошибка авторизации пользователя ${err}`);
       });
   };
 
   React.useEffect(() => {
     if (localStorage.getItem("jwt")) {
-      // const jwt = localStorage.getItem("jwt");
+      
       checkToken() // убрал jwt из параметра
         .then((data) => {
           setUserEmail(data.email);  // убираем одну data для корректности данных
