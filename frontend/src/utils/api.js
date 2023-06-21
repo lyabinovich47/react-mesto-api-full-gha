@@ -134,7 +134,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://localhost:3000',
-  //baseUrl: 'https://api.lyabinovich47.nomoredomains.rocks',
+  // baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.lyabinovich47.nomoredomains.rocks',
   
 });

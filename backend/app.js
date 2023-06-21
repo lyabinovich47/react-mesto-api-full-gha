@@ -12,8 +12,8 @@ const { PORT, MONGO_URL } = require('./config');
 mongoose.connect(MONGO_URL, {});
 
 const app = express();
-// app.use(cors({ origin: ['http://localhost:3001', 'https://lyabinovich47.nomoredomains.rocks'] }));
-app.use(cors());
+app.use(cors({ origin: ['http://localhost:3001', 'https://lyabinovich47.nomoredomains.rocks'] }));
+// app.use(cors());
 
 app.use(requestLogger); // логгер запросов
 app.use(express.json());
